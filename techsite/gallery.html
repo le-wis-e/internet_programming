@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechPulse — Gallery</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      font-size: 2rem;
+      color: var(--muted);
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: color var(--transition);
+    }
+    .lightbox-close:hover { color: #fff; }
+
+    /* Gallery item hover overlay */
+    .gallery-item {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .gallery-item img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease, filter 0.4s ease;
+      filter: grayscale(15%);
+      border-radius: 0;
+      border: none;
+    }
+    .gallery-item.span-2 { grid-column: span 2; }
+    .gallery-item.span-2 img { aspect-ratio: 16/9; }
+
+    .gallery-item:hover img { transform: scale(1.05); filter: grayscale(0%); }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span {
+      font-size: 0.82rem;
+      color: #fff;
+      font-family: var(--mono);
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+      padding: 0.35rem 0.9rem;
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,245,196,0.07);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">Tech<span>Pulse</span></div>
+    <div class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <p class="section-label">// Visual Collection</p>
+      <h1>Gallery</h1>
+      <p>A curated visual archive of technology — from microchips and data centres to space launches and human-computer interfaces.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- GALLERY -->
+  <section>
+    <div class="container">
+      <div class="filter-bar">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Hardware</button>
+        <button class="filter-btn">AI</button>
+        <button class="filter-btn">Space</button>
+        <button class="filter-btn">People</button>
+      </div>
+
+      <div class="img-grid" id="gallery-grid">
+        <div class="gallery-item span-2" onclick="openLightbox('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=80')">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&auto=format&fit=crop&q=80" alt="Circuit board macro showing intricate hardware traces" loading="lazy" />
+          <div class="gallery-overlay"><span>Circuit Board — Hardware</span></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=900&auto=format&fit=crop&q=80')">
+          <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=600&auto=format&fit=crop&q=80" alt="Colorful code on a display screen" loading="lazy" />
+          <div class="gallery-overlay"><span>Source Code — Software</span></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&auto=format&fit=crop&q=80')">
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80" alt="Planet Earth seen from space" loading="lazy" />
+          <div class="gallery-overlay"><span>Earth from Orbit — Space</span></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=900&auto=format&fit=crop&q=80')">
+          <img src="https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=600&auto=format&fit=crop&q=80" alt="Person coding on a laptop" loading="lazy" />
+          <div class="gallery-overlay"><span>Developer at Work — People</span></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=900&auto=format&fit=crop&q=80')">
+          <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&auto=format&fit=crop&q=80" alt="Humanoid robot representing artificial intelligence" loading="lazy" />
+          <div class="gallery-overlay"><span>Humanoid Robot — AI</span></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=900&auto=format&fit=crop&q=80')">
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=80" alt="Server room with rows of rack-mounted hardware" loading="lazy" />
+          <div class="gallery-overlay"><span>Data Centre — Hardware</span></div>
+        </div>
+        <div class="gallery-item span-2" onclick="openLightbox('https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=1200&auto=format&fit=crop&q=80')">
+          <img src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=900&auto=format&fit=crop&q=80" alt="Abstract neural network visualisation representing deep learning" loading="lazy" />
+          <div class="gallery-overlay"><span>Neural Network Visualisation — AI</span></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=900&auto=format&fit=crop&q=80')">
+          <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&auto=format&fit=crop&q=80" alt="Rocket launch at night leaving a bright trail" loading="lazy" />
+          <div class="gallery-overlay"><span>Rocket Launch — Space</span></div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=900&auto=format&fit=crop&q=80')">
+          <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&auto=format&fit=crop&q=80" alt="MacBook with lines of code on a dark background" loading="lazy" />
+          <div class="gallery-overlay"><span>Laptop Coding Session — People</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- VIDEO -->
+  <section>
+    <div class="container">
+      <p class="section-label">// Video Feature</p>
+      <h2 class="section-title">Inside a Data Centre</h2>
+      <p class="section-sub">An immersive look at the infrastructure powering the modern internet — from cooling systems to optical fibre.</p>
+      <div class="video-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/XZmGGAbHqa0"
+          title="Inside a Data Centre"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">✕</button>
+    <img id="lightbox-img" src="" alt="Enlarged gallery image" />
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">Tech<span>Pulse</span></div>
+          <p>Your premier source for technology insights, innovation, and the future of computing.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Topics</h4>
+          <ul>
+            <li><a href="#">AI &amp; ML</a></li>
+            <li><a href="#">Cybersecurity</a></li>
+            <li><a href="#">Blockchain</a></li>
+            <li><a href="#">IoT</a></li>
+            <li><a href="#">Quantum</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 TechPulse. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="GitHub">⌥</a>
+          <a href="#" aria-label="RSS">⊛</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('main-nav').classList.toggle('open');
+    }
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // Filter buttons (visual-only demo)
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

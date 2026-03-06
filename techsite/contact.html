@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechPulse — Contact</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .success-msg {
+      display: none;
+      background: rgba(0,245,196,0.1);
+      border: 1px solid rgba(0,245,196,0.4);
+      color: var(--accent);
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+    .success-msg.show { display: block; }
+
+    .map-placeholder {
+      width: 100%;
+      height: 300px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      gap: 0.5rem;
+    }
+    .map-placeholder span:first-child { font-size: 2.5rem; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">Tech<span>Pulse</span></div>
+    <div class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <p class="section-label">// Get In Touch</p>
+      <h1>Contact Us</h1>
+      <p>Have a question, a project idea, or want to partner with TechPulse? We'd love to hear from you.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- CONTACT SECTION -->
+  <section>
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- FORM -->
+        <div>
+          <p class="section-label">// Send a Message</p>
+          <h2 class="section-title" style="font-size:2rem;">Let's Talk</h2>
+          <p class="section-sub" style="margin-bottom:2rem;">Fill in the form and our team will get back to you within one business day.</p>
+
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option value="">— Select a topic —</option>
+              <option>General Enquiry</option>
+              <option>Service / Partnership</option>
+              <option>Media / Press</option>
+              <option>Careers</option>
+              <option>Technical Support</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your project or question…" required></textarea>
+          </div>
+          <button class="btn btn-primary" onclick="handleSubmit(event)" style="width:100%; justify-content:center;">
+            Send Message →
+          </button>
+          <div class="success-msg" id="success-msg">
+            ✓ Message sent! We'll be in touch within one business day.
+          </div>
+        </div>
+
+        <!-- CONTACT INFO -->
+        <div>
+          <p class="section-label">// Find Us</p>
+          <h2 class="section-title" style="font-size:2rem;">Our Details</h2>
+          <p style="color:var(--muted); margin-bottom:2rem;">We are headquartered in Nairobi with remote team members across three continents.</p>
+
+          <div class="contact-detail">
+            <div class="icon">📍</div>
+            <div class="detail-text">
+              <span>Office Address</span>
+              <strong>14 Silicon Road, Westlands, Nairobi, Kenya</strong>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="icon">📧</div>
+            <div class="detail-text">
+              <span>Email</span>
+              <strong>hello@techpulse.io</strong>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="icon">📞</div>
+            <div class="detail-text">
+              <span>Phone</span>
+              <strong>+254 700 123 456</strong>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="icon">🕐</div>
+            <div class="detail-text">
+              <span>Office Hours</span>
+              <strong>Mon – Fri, 8:00 AM – 6:00 PM EAT</strong>
+            </div>
+          </div>
+
+          <br />
+          <!-- Map Placeholder -->
+          <div class="map-placeholder">
+            <span>🗺️</span>
+            <span>Westlands, Nairobi, Kenya</span>
+            <span style="font-size:0.78rem;">Map would be embedded here via Google Maps API</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- FAQ -->
+  <section>
+    <div class="container">
+      <p class="section-label">// FAQ</p>
+      <h2 class="section-title">Common Questions</h2>
+      <p class="section-sub">Quick answers to the things people ask us most often.</p>
+      <div class="cards-grid">
+        <div class="card">
+          <h3>Do you offer free consultations?</h3>
+          <p>Yes — our first 30-minute discovery call is always free. We'll discuss your needs and see if TechPulse is the right fit.</p>
+        </div>
+        <div class="card">
+          <h3>Can I pitch a guest article?</h3>
+          <p>Absolutely. We accept high-quality guest contributions. Send us a brief pitch with your topic idea and a short author bio.</p>
+        </div>
+        <div class="card">
+          <h3>How quickly do you respond?</h3>
+          <p>We aim to reply to all enquiries within one business day. Enterprise clients have a dedicated contact for faster response.</p>
+        </div>
+        <div class="card">
+          <h3>Do you offer student discounts?</h3>
+          <p>Yes. Students with a valid institutional email get 50% off Pro plans. Use coupon code STUDENT50 at checkout.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">Tech<span>Pulse</span></div>
+          <p>Your premier source for technology insights, innovation, and the future of computing.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Topics</h4>
+          <ul>
+            <li><a href="#">AI &amp; ML</a></li>
+            <li><a href="#">Cybersecurity</a></li>
+            <li><a href="#">Blockchain</a></li>
+            <li><a href="#">IoT</a></li>
+            <li><a href="#">Quantum</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 TechPulse. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="GitHub">⌥</a>
+          <a href="#" aria-label="RSS">⊛</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('main-nav').classList.toggle('open');
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (!name || !email || !message) {
+        alert('Please fill in your name, email, and message.');
+        return;
+      }
+      document.getElementById('success-msg').classList.add('show');
+      // Reset fields
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('subject').value = '';
+      document.getElementById('message').value = '';
+    }
+  </script>
+</body>
+</html>
