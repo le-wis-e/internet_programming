@@ -1,0 +1,28 @@
+PROJECT REPORT:joygrow hub
+The Chosen Problem/Need
+The project addresses the lack of accessible, trusted information regarding organic health remedies in Kenya. Many consumers are moving away from processed chemicals but struggle to find a central "hub" that combines educational content (The Miracle Moringa, Black Seed Oil) with authentic, locally-sourced products. JoyGrow provides this bridge.
+
+2. How Each Webpage Addresses the Problem
+Home (index.html): Establishes trust through transparency (stats on organic farms) and provides a clear call to action for users seeking natural health.
+
+About (about.html): Humanizes the brand by explaining its Thika roots and commitment to Kenyan farmers, solving the "trust gap" in the supplement industry.
+
+Products (products.html): Organizes remedies by category (Superfoods, Oils) to help users find solutions for specific health needs efficiently.
+
+Blog (blog.html): Educates the user. By providing "Plant Wisdom," it moves the site from a simple shop to an educational authority.
+
+FAQ/Quiz: Addresses common technical and health-related barriers, such as delivery logistics and kebs certification.
+
+Contact (contact.html): Provides a direct line for personalized health inquiries, ensuring the user feels supported in their wellness journey.
+
+3. Client/Server Concepts Applied
+Client-Side Rendering: The project uses HTML5 and CSS3 to render the UI directly in the user's browser.
+
+Asynchronous Interactivity: JavaScript is used to handle form submissions and animations without requiring a full page reload, mimicking a modern "Single Page Application" feel.
+
+DOM Manipulation: The mobile menu and FAQ accordion use the Document Object Model (DOM) to dynamically update the view based on user clicks.
+
+4. Hosting Options and Trends
+Current Choice: GitHub Pages or Netlify are the preferred trends for static sites like this. They offer free SSL certificates, automated deployment from Git repositories, and high-speed Global Content Delivery Networks (CDNs).
+
+Trend: There is a major shift toward Static Site Generators (SSG) and Jamstack architecture (JavaScript, APIs, and Markup), which improves security and performance by removing the need for a traditional database server for informational sites.
